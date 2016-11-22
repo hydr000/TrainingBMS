@@ -5,30 +5,29 @@ import eu.sig.training.ch03.BinaryTreeNode;
 
 public class BinaryTreeSearch {
 	
+	public static int handleNode(BinaryTreeNode<Integer> node, int val) {
+        if (node == null) {
+            throw new TreeException("Value not found in tree!");
+        } else {
+            return 1 + calculateDepth(node, val);
+        }		
+	}
+	
     // tag::calculateDepth[]
     public static int calculateDepth(BinaryTreeNode<Integer> node, int nodeValue) {
         if(node == null){
         	throw new IllegalArgumentException("A reference to argument 'node' was not specified");
         }
-    	int depth = 0;
         if (node.getValue() == nodeValue) {
-            return depth;
+            return 0;
         } else {
-            if (nodeValue < node.getValue()) {
-                BinaryTreeNode<Integer> left = node.getLeft();
-                if (left == null) {
-                    throw new TreeException("Value not found in tree!");
-                } else {
-                    return 1 + calculateDepth(left, nodeValue);
-                }
+        	BinaryTreeNode<Integer> newNode;
+        	if (nodeValue < node.getValue()) {
+                newNode = node.getLeft();
             } else {
-                BinaryTreeNode<Integer> right = node.getRight();
-                if (right == null) {
-                    throw new TreeException("Value not found in tree!");
-                } else {
-                    return 1 + calculateDepth(right, nodeValue);
-                }
+                newNode = node.getRight();
             }
+        	return handleNode(newNode, nodeValue);
         }
     }
     // end::calculateDepth[]
