@@ -3,7 +3,7 @@ package eu.sig.training.ch04;
 import eu.sig.training.ch04.Money;
 
 // tag::CheckingAccount[]
-public class CheckingAccount {
+public class CheckingAccount extends Account {
     private int transferLimit = 100;
 
     public Transfer makeTransfer(String counterAccount, Money amount)
@@ -21,12 +21,5 @@ public class CheckingAccount {
         }
     }
     
-    protected Transfer doOn0(String counterAccount, Money amount) throws BusinessException {
-        // 3. Look up counter account and make transfer object:
-        CheckingAccount acct = Accounts.findAcctByNumber(counterAccount);
-        Transfer result = new Transfer(this, acct, amount);
-        return result;
-    }
-
 }
 // end::CheckingAccount[]
