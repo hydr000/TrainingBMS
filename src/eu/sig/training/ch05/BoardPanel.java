@@ -1,6 +1,5 @@
 package eu.sig.training.ch05;
 
-import java.awt.Graphics;
 import java.util.List;
 
 public class BoardPanel {
@@ -23,17 +22,17 @@ public class BoardPanel {
      * @param h
      *            The height of this square (in pixels).
      */
-    private void render(Square square, Graphics g, int x, int y, int w, int h) {
-        square.getSprite().draw(g, x, y, w, h);
+    private void render(Square square, DrawParameter drawParameter) {
+        square.getSprite().draw(drawParameter);
         for (Unit unit : square.getOccupants()) {
-            unit.getSprite().draw(g, x, y, w, h);
+            unit.getSprite().draw(drawParameter);
         }
     }
     // end::render[]
 
     private class Sprite {
         @SuppressWarnings("unused")
-        public void draw(Graphics g, int x, int y, int w, int h) {
+        public void draw(DrawParameter parameterObject) {
 
         }
     }
